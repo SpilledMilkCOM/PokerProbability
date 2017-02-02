@@ -6,13 +6,19 @@ namespace SM.Cards
     {
         IEnumerable<Card> Cards { get; }
 
+        Card HighCard { get; }
+
         bool IsFlush { get; }
+
+        bool IsFourOfAKind { get; }
 
         bool IsFullHouse { get; }
 
         bool IsPair { get; }
 
         bool IsStraight { get; }
+
+        bool IsStraightFlush { get; }
 
         bool IsThreeOfAKind { get; }
 
@@ -21,5 +27,16 @@ namespace SM.Cards
         void Add(Card card);
 
         void Clear();
+
+        /// <summary>
+        /// Remove any card from the hand.
+        /// </summary>
+        Card Discard();
+
+        /// <summary>
+        /// Remove specific card (by equality not by reference)
+        /// </summary>
+        /// <param name="card">The card (values) to remove.</param>
+        Card Discard(Card card);
     }
 }

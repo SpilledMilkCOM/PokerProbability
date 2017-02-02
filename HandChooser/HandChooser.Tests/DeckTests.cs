@@ -1,10 +1,11 @@
-﻿using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SM.Cards;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace HandChooser.Tests
 {
+    [ExcludeFromCodeCoverage]
     [TestClass]
     public class DeckTests
     {
@@ -36,6 +37,38 @@ namespace HandChooser.Tests
 
             Assert.IsNotNull(card);
             Assert.AreEqual(SuitNames.HEART, card.Suit.Name);
+        }
+
+        [TestMethod]
+        public void Deck_Reset()
+        {
+            var test = ConstructTestObject();
+            var initialCount = test.Cards.Count();
+
+            test.Deal();
+            test.Deal();
+            test.Deal();
+
+            Assert.IsTrue(initialCount > test.Cards.Count());
+
+            test.Reset();
+
+            Assert.AreEqual(initialCount, test.Cards.Count());
+        }
+
+        [TestMethod]
+        public void Deck_Reset_WithNewCards()
+        {
+            var test = ConstructTestObject();
+            var deck2 = ConstructTestObject();
+
+            deck2.Deal();
+            deck2.Deal();
+            deck2.Deal();
+
+            test.Reset(deck2.Cards);
+
+            Assert.AreEqual(deck2.Cards.Count(), test.Cards.Count());
         }
 
         private IDeck ConstructTestObject()

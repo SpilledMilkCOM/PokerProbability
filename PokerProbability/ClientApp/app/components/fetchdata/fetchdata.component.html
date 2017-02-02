@@ -2,7 +2,10 @@
 
 <p>This component demonstrates fetching data from the server.</p>
 
-<p *ngIf="!forecasts"><em>Loading...</em></p>
+<p *ngIf="!forecasts"><em>Loading...</em>
+</p>
+
+<p *ngIf="errorMessage" style="color: red">{{errorMessage}}</p>
 
 <table class='table' *ngIf="forecasts">
     <thead>
@@ -14,7 +17,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let forecast of forecasts">
+        <tr *ngFor="let forecast of forecasts | async">
             <td>{{ forecast.dateFormatted }}</td>
             <td>{{ forecast.temperatureC }}</td>
             <td>{{ forecast.temperatureF }}</td>

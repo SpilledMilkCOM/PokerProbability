@@ -2,6 +2,7 @@
 using SM.Cards;
 using SM.Cards.Poker;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace HandChooser.Tests
 {
@@ -9,6 +10,30 @@ namespace HandChooser.Tests
     [TestClass]
     public class TexasHoldemHandTests
     {
+        [TestMethod]
+        public void TexasHoldemHand_Clear_DiscardsAllCards()
+        {
+            var test = new TexasHoldemHandFactory().ConstructCrappyHand();
+
+            Assert.AreEqual(5, test.Count);
+
+            test.Clear();
+
+            Assert.AreEqual(0, test.Count);
+        }
+
+        [TestMethod]
+        public void TexasHoldemHand_Discard()
+        {
+            var test = new TexasHoldemHandFactory().ConstructCrappyHand();
+            var initialCount = test.Count;
+
+            test.Discard();
+            test.Discard();
+
+            Assert.AreEqual(initialCount - 2, test.Count);
+        }
+
         [TestMethod]
         public void TexasHoldemHand_HighCard()
         {
@@ -61,6 +86,20 @@ namespace HandChooser.Tests
         }
 
         [TestMethod]
+        public void TexasHoldemHand_IsFullHouse()
+        {
+            var test = ConstructTestObject();
+
+            test.Add(new Card(Club, 3));
+            test.Add(new Card(Club, 6));
+            test.Add(new Card(Diamond, 3));
+            test.Add(new Card(Diamond, 6));
+            test.Add(new Card(Heart, 3));
+
+            Assert.IsTrue(test.IsFullHouse);
+        }
+
+        [TestMethod]
         public void TexasHoldemHand_IsNotFlush()
         {
             var test = ConstructTestObject();
@@ -81,6 +120,14 @@ namespace HandChooser.Tests
             var test = new TexasHoldemHandFactory().ConstructCrappyHand();
 
             Assert.IsFalse(test.IsFourOfAKind);
+        }
+
+        [TestMethod]
+        public void TexasHoldemHand_IsNotFullHouse()
+        {
+            var test = new TexasHoldemHandFactory().ConstructCrappyHand();
+
+            Assert.IsFalse(test.IsFullHouse);
         }
 
         [TestMethod]
@@ -127,6 +174,14 @@ namespace HandChooser.Tests
             var test = new TexasHoldemHandFactory().ConstructCrappyHand();
 
             Assert.IsFalse(test.IsThreeOfAKind);
+        }
+
+        [TestMethod]
+        public void TexasHoldemHand_IsNotTwoPair()
+        {
+            var test = new TexasHoldemHandFactory().ConstructCrappyHand();
+
+            Assert.IsFalse(test.IsTwoPair);
         }
 
         [TestMethod]
@@ -189,9 +244,31 @@ namespace HandChooser.Tests
             Assert.IsTrue(test.IsStraightFlush);
         }
 
+        [TestMethod]
+        public void TexasHoldemHand_IsTwoPair()
+        {
+            var test = ConstructTestObject();
+
+            test.Add(new Card(Club, 3));
+            test.Add(new Card(Club, 6));
+            test.Add(new Card(Diamond, 3));
+            test.Add(new Card(Diamond, 6));
+            test.Add(new Card(Heart, 5));
+
+            Assert.IsTrue(test.IsTwoPair);
+        }
+
         private IHand ConstructTestObject()
         {
             return new TexasHoldemHand();
         }
+
+        private Suit Club { get { return new Suit(SuitNames.CLUB); } }
+
+        private Suit Diamond { get { return new Suit(SuitNames.DIAMOND); } }
+
+        private Suit Heart { get { return new Suit(SuitNames.HEART); } }
+
+        private Suit Spade { get { return new Suit(SuitNames.SPADE); } }
     }
 }

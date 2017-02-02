@@ -6,6 +6,11 @@ namespace SM.Cards
     {
         IEnumerable<Card> Cards { get; }
 
+        /// <summary>
+        /// The number of cards in the hand (MAY have to enumerate).
+        /// </summary>
+        int Count { get; }
+
         Card HighCard { get; }
 
         bool IsFlush { get; }

@@ -15,6 +15,17 @@ namespace SM.Cards.Poker
 
         public IEnumerable<Card> Cards { get { return _cards; } }
 
+        /// <summary>
+        /// The number of cards in the hand (does NOT have to enumerate)
+        /// </summary>
+        public int Count
+        {
+            get
+            {
+                return _cards.Count;
+            }
+        }
+
         public Card HighCard
         {
             get
@@ -38,10 +49,11 @@ namespace SM.Cards.Poker
             get
             {
                 var groups = _cards.GroupBy(item => item.Name);
+                var count = groups.First().Count();
 
-                // Four grouped up leaving three other distinct groups.
+                // Four and one grouped up.
 
-                return groups.Count() == 2;
+                return groups.Count() == 2 && (count == 1 || count == 4);
             }
         }
 
@@ -49,7 +61,12 @@ namespace SM.Cards.Poker
         {
             get
             {
-                throw new NotImplementedException();
+                var groups = _cards.GroupBy(item => item.Name);
+                var count = groups.First().Count();
+
+                // Three and two grouped up.
+
+                return groups.Count() == 2 && (count == 2 || count == 3);
             }
         }
 
@@ -72,7 +89,7 @@ namespace SM.Cards.Poker
                 var ordered = _cards.OrderBy(item => item.Value);
                 var count = _cards.Count;
 
-                return ordered.First().Value + (count - 1) == ordered.Last().Value ;
+                return ordered.First().Value + (count - 1) == ordered.Last().Value;
             }
         }
 
@@ -100,7 +117,12 @@ namespace SM.Cards.Poker
         {
             get
             {
-                throw new NotImplementedException();
+                var groups = _cards.GroupBy(item => item.Name);
+                var count = groups.First().Count();
+
+                // Two and Two and one grouped up.
+
+                return groups.Count() == 3 && (count == 1 || count == 2);
             }
         }
 

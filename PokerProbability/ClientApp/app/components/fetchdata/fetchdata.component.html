@@ -1,8 +1,8 @@
 <h1>Weather forecast</h1>
-
 <p>This component demonstrates fetching data from the server.</p>
 
-<p *ngIf="!forecasts"><em>Loading...</em>
+<p *ngIf="!forecasts">
+    <em>Loading...</em>
 </p>
 
 <p *ngIf="errorMessage" style="color: red">{{errorMessage}}</p>
@@ -17,6 +17,7 @@
         </tr>
     </thead>
     <tbody>
+        <!-- The "async" pipe can handle a promise or an observable. -->
         <tr *ngFor="let forecast of forecasts | async">
             <td>{{ forecast.dateFormatted }}</td>
             <td>{{ forecast.temperatureC }}</td>

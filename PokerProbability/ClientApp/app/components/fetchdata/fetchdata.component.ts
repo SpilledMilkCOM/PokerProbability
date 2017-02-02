@@ -11,7 +11,9 @@ import { Observable } from "rxjs/Observable";
 })
 export class FetchDataComponent implements OnInit {
     errorMessage: string;
-    forecasts: Observable<IWeatherForecast[]>;
+    //forecasts: IWeatherForecast[];                // Use an array only if you're not assigning a Promise or Observable.
+    //forecasts: Observable<IWeatherForecast[]>;
+    forecasts: Promise<IWeatherForecast[]>;
 
     //constructor(http: Http) {
     //    http.get('/api/SampleData/WeatherForecasts').subscribe(result => {
@@ -27,20 +29,33 @@ export class FetchDataComponent implements OnInit {
     ngOnInit() {
         console.log("FetchDataComponent.ngOnInit()");
 
-        //this.dataService.getData()
-        //    .subscribe(
-        //    data => {
-        //        console.log("FetchDataComponent.ngOnInit() - subscription returned.");
+        /*
+        this.dataService.getData()
+            .subscribe(
+            data => {
+                console.log("FetchDataComponent.ngOnInit() - subscription returned.");
 
-        //        this.forecasts = data;
+                this.forecasts = data;
 
-        //        console.log("FetchDataComponent.ngOnInit() - data assigned.");
-        //    },
-        //    error => this.errorMessage = <any>error
-        //    );
+                console.log("FetchDataComponent.ngOnInit() - data assigned.");
+            },
+            error => this.errorMessage = <any>error
+            );
+        */
 
         // Assigning the observable assigns the async pipe.
+        // (Could make this wait for the promise with the .then() function, but the forcasts variable would need to change back to just an array.)
         this.forecasts = this.dataService.getData()
             .catch(error => this.errorMessage = <any>error);
+
+        /*
+
+        This call "feels" less asynchronous even though it is.
+
+        this.forecasts = this.dataService.getData()
+            .do(() => this.toastService.activate('Got data'))
+            .catch(error => this.errorMessage = <any>error)
+            .finally( do stuff here too);
+        */
     }
 }

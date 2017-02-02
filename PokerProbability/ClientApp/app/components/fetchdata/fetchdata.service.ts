@@ -5,6 +5,7 @@ import { Http, Response } from '@angular/http';
 
 import "rxjs/add/operator/map";         // Define the "map" function from a node module.
 import "rxjs/add/operator/catch";
+import "rxjs/add/operator/toPromise";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/observable/throw";
 
@@ -31,6 +32,7 @@ export class FetchDataService {
 
                 return <IWeatherForecast[]>response.json();
             })
+            .toPromise()
             .catch(this.handleError);
     }
 

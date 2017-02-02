@@ -7,7 +7,7 @@
     <ProjectGuid>{506A7CF3-2DAB-404C-A512-FB5CAF2139EE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HandChooser</RootNamespace>
+    <RootNamespace>SM.Cards</RootNamespace>
     <AssemblyName>HandChooser</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -41,7 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Card.cs" />
+    <Compile Include="CardNames.cs" />
+    <Compile Include="PileShuffler.cs" />
     <Compile Include="Deck.cs" />
+    <Compile Include="ICard.cs" />
+    <Compile Include="IDeck.cs" />
+    <Compile Include="IShuffler.cs" />
     <Compile Include="TexasHoldemHand.cs" />
     <Compile Include="IHand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,4 +1,4 @@
-﻿namespace HandChooser
+﻿namespace SM.Cards
 {
     public class Suit
     {

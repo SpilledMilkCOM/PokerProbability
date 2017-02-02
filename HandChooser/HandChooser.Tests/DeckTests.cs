@@ -1,4 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+using SM.Cards;
 
 namespace HandChooser.Tests
 {
@@ -10,12 +13,22 @@ namespace HandChooser.Tests
         {
             var test = ConstructTestObject();
 
-            Assert.AreEqual(52, test.Cards.Count);
+            Assert.AreEqual(52, test.Cards.Count());
         }
 
-        private Deck ConstructTestObject()
+        [TestMethod]
+        public void Deal_CardValue()
         {
-            return new Deck();
+            var test = ConstructTestObject();
+
+            var card = test.Deal();
+
+            Assert.AreEqual(52, test.Cards.Count());
+        }
+
+        private IDeck ConstructTestObject()
+        {
+            return new Deck(new PileShuffler());
         }
     }
 }

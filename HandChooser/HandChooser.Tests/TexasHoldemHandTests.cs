@@ -1,6 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 
+using SM.Cards;
+using SM.Cards.Poker;
+
 namespace HandChooser.Tests
 {
     [TestClass]

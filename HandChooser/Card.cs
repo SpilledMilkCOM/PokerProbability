@@ -1,6 +1,6 @@
-﻿namespace HandChooser
+﻿namespace SM.Cards
 {
-    public class Card
+    public class Card : ICard
     {
         public Card(Suit suit, int value)
             : this(value.ToString(), suit, value)

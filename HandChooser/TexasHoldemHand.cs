@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace HandChooser
+namespace SM.Cards.Poker
 {
     public class TexasHoldemHand : IHand
     {
@@ -25,6 +25,22 @@ namespace HandChooser
             }
         }
 
+        public bool IsFullHouse
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public bool IsPair
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public bool IsStraight
         {
             get
@@ -33,6 +49,22 @@ namespace HandChooser
                 var count = _cards.Count;
 
                 return ordered.First().Value + (count - 1) == ordered.Last().Value ;
+            }
+        }
+
+        public bool IsThreeOfAKind
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public bool IsTwoPair
+        {
+            get
+            {
+                throw new NotImplementedException();
             }
         }
 

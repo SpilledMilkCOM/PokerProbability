@@ -1,17 +1,77 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace HandChooser
+namespace SM.Cards
 {
-    public class Deck
+    public class Deck : IDeck
     {
-        public Deck()
+        private List<Card> _cards;
+        private IShuffler _shuffler;
+
+        public Deck(IShuffler shuffler)
         {
-            Cards = new List<Card>();
+            _shuffler = shuffler;
+
+            _cards = new List<Card>();
 
             Initialize();
         }
 
-        public List<Card> Cards { get; set; }
+        public IEnumerable<Card> Cards { get { return _cards; } }
+
+        public Card Deal()
+        {
+            var result = _cards.FirstOrDefault();
+
+            Remove(result);
+
+            return result;
+        }
+
+        public Card Deal(Suit suit)
+        {
+            var result = _cards.FirstOrDefault();
+
+            Remove(result);
+
+            return result;
+        }
+
+        public Card Deal(Card card)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Card Deal(string cardValue)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Reset()
+        {
+            _cards.Clear();
+
+            Initialize();
+        }
+
+        public void Reset(IEnumerable<Card> cards)
+        {
+            _cards.Clear();
+            _cards.AddRange(cards);
+        }
+
+        public void Shuffle()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Shuffle(int count)
+        {
+            throw new NotImplementedException();
+        }
+
+        //----==== PRIVATE ====--------------------------------------------------------------------
 
         private void Initialize()
         {
@@ -23,16 +83,28 @@ namespace HandChooser
 
         private void Initialize(Suit suit)
         {
-            Cards.Add(new Card("Ace", suit, 1));
+            _cards.Add(new Card("Ace", suit, 1));
 
             for (int i = 2; i <= 10; i++)
             {
-                Cards.Add(new Card(i.ToString(), suit, i));
+                _cards.Add(new Card(i.ToString(), suit, i));
             }
 
-            Cards.Add(new Card("Jack", suit, 11));
-            Cards.Add(new Card("Queen", suit, 12));
-            Cards.Add(new Card("King", suit, 13));
+            _cards.Add(new Card("Jack", suit, 11));
+            _cards.Add(new Card("Queen", suit, 12));
+            _cards.Add(new Card("King", suit, 13));
+        }
+
+        private bool Remove(Card card)
+        {
+            bool removed = false;
+
+            if (card != null)
+            {
+                removed = _cards.Remove(card);
+            }
+
+            return removed;
         }
     }
 }

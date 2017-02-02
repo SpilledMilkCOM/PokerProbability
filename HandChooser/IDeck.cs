@@ -1,0 +1,25 @@
+﻿using System.Collections.Generic;
+
+namespace SM.Cards
+{
+    public interface IDeck
+    {
+        IEnumerable<Card> Cards { get; }
+
+        Card Deal();
+
+        Card Deal(string cardValue);
+
+        Card Deal(Card card);
+
+        Card Deal(Suit suit);
+
+        void Reset();
+
+        void Reset(IEnumerable<Card> cards);
+
+        void Shuffle();
+
+        void Shuffle(int count);
+    }
+}

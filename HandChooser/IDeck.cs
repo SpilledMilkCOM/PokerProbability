@@ -8,7 +8,7 @@ namespace SM.Cards
 
         Card Deal();
 
-        Card Deal(string cardValue);
+        Card Deal(string cardName);
 
         Card Deal(Card card);
 

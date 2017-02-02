@@ -10,7 +10,7 @@ namespace HandChooser.Tests
     public class TexasHoldemHandTests
     {
         [TestMethod]
-        public void IsFlush()
+        public void TexasHoldemHand_IsFlush()
         {
             var test = ConstructTestObject();
             var suit = new Suit("Spade");
@@ -25,7 +25,7 @@ namespace HandChooser.Tests
         }
 
         [TestMethod]
-        public void IsNotFlush()
+        public void TexasHoldemHand_IsNotFlush()
         {
             var test = ConstructTestObject();
             var suit = new Suit("Spade");
@@ -40,7 +40,7 @@ namespace HandChooser.Tests
         }
 
         [TestMethod]
-        public void IsStraight()
+        public void TexasHoldemHand_IsStraight()
         {
             var test = ConstructTestObject();
             var suit = new Suit("Spade");
@@ -55,7 +55,7 @@ namespace HandChooser.Tests
         }
 
         [TestMethod]
-        public void IsNotStraight()
+        public void TexasHoldemHand_IsNotStraight()
         {
             var test = ConstructTestObject();
             var suit = new Suit("Spade");

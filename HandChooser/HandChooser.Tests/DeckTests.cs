@@ -17,13 +17,25 @@ namespace HandChooser.Tests
         }
 
         [TestMethod]
-        public void Deal_CardValue()
+        public void Deck_Deal_CardName()
         {
             var test = ConstructTestObject();
 
-            var card = test.Deal();
+            var card = test.Deal(CardNames.FOUR);
 
-            Assert.AreEqual(52, test.Cards.Count());
+            Assert.IsNotNull(card);
+            Assert.AreEqual(CardNames.FOUR, card.Name);
+        }
+
+        [TestMethod]
+        public void Deck_Deal_CardSuite()
+        {
+            var test = ConstructTestObject();
+
+            var card = test.Deal(new Suit(SuitNames.HEART));
+
+            Assert.IsNotNull(card);
+            Assert.AreEqual(SuitNames.HEART, card.Suit.Name);
         }
 
         private IDeck ConstructTestObject()

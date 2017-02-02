@@ -31,7 +31,7 @@ namespace SM.Cards
 
         public Card Deal(Suit suit)
         {
-            var result = _cards.FirstOrDefault();
+            var result = _cards.FirstOrDefault(card => card.Suit == suit);
 
             Remove(result);
 
@@ -43,9 +43,13 @@ namespace SM.Cards
             throw new NotImplementedException();
         }
 
-        public Card Deal(string cardValue)
+        public Card Deal(string cardName)
         {
-            throw new NotImplementedException();
+            var result = _cards.FirstOrDefault(card => card.Name == cardName);
+
+            Remove(result);
+
+            return result;
         }
 
         public void Reset()
@@ -75,10 +79,10 @@ namespace SM.Cards
 
         private void Initialize()
         {
-            Initialize(new Suit("Spade"));
-            Initialize(new Suit("Diamond"));
-            Initialize(new Suit("Club"));
-            Initialize(new Suit("Heart"));
+            Initialize(new Suit(SuitNames.SPADE));
+            Initialize(new Suit(SuitNames.DIAMOND));
+            Initialize(new Suit(SuitNames.CLUB));
+            Initialize(new Suit(SuitNames.HEART));
         }
 
         private void Initialize(Suit suit)

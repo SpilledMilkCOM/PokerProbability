@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import { CardComponent } from '../card/card.component';
 
 @Component({
@@ -7,4 +8,9 @@ import { CardComponent } from '../card/card.component';
 })
 
 export class HomeComponent {
+    public winPercent = 0.0;
+
+    public calculate() {
+        this.winPercent = 44.44;
+    }
 }

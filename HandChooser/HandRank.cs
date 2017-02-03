@@ -2,8 +2,15 @@
 {
     public class HandRank
     {
-        public int Rank { get; set; }
+        public HandRank()
+        {
+            Rank = HandRankEnum.Undefined;
+        }
 
-        public int Value { get; set; }
+        public HandRankEnum Rank { get; set; }
+
+        public int HighCardValue { get; set; }
+
+        public int RankHighCardValue { get; set; }
     }
 }

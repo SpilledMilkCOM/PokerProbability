@@ -42,6 +42,9 @@
   <ItemGroup>
     <Compile Include="Card.cs" />
     <Compile Include="CardValues.cs" />
+    <Compile Include="HandRankRanking.cs" />
+    <Compile Include="HandRank.cs" />
+    <Compile Include="IHandRanking.cs" />
     <Compile Include="SuitNames.cs" />
     <Compile Include="CardNames.cs" />
     <Compile Include="PileShuffler.cs" />

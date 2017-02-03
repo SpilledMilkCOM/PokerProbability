@@ -82,14 +82,34 @@ namespace SM.Cards.Poker
             }
         }
 
+        public bool IsRoyalFlush
+        {
+            get
+            {
+                return IsStraightFlush && HighCard?.HighValue == CardValues.ACE_HIGH;
+            }
+        }
+
         public bool IsStraight
         {
             get
             {
-                var ordered = _cards.OrderBy(item => item.Value);
+                var hasAce = HighCard?.Value == CardValues.ACE;
+                var hasKing = _cards.Any(card => card.Value == CardValues.KING);
                 var count = _cards.Count;
 
-                return ordered.First().Value + (count - 1) == ordered.Last().Value;
+                IOrderedEnumerable<Card> ordered;
+
+                if (hasAce && hasKing)
+                {
+                    ordered = _cards.OrderBy(item => item.HighValue);
+                }
+                else
+                {
+                    ordered = _cards.OrderBy(item => item.Value);
+                }
+
+                return ordered.First().Value + (count - 1) == ordered.Last().HighValue;
             }
         }
 

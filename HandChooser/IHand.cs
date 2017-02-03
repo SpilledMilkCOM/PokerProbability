@@ -21,6 +21,8 @@ namespace SM.Cards
 
         bool IsPair { get; }
 
+        bool IsRoyalFlush { get; }
+
         bool IsStraight { get; }
 
         bool IsStraightFlush { get; }

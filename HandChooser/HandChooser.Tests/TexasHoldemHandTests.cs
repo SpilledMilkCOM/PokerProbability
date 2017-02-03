@@ -200,18 +200,18 @@ namespace HandChooser.Tests
         }
 
         [TestMethod]
-        public void TexasHoldemHand_IsThreeOfAKind()
+        public void TexasHoldemHand_IsRoyalFlush()
         {
             var test = ConstructTestObject();
-            var suit = new Suit(SuitNames.SPADE);
+            var suit = new Suit("Spade");
 
-            test.Add(new Card(suit, 5));
-            test.Add(new Card(suit, 2));
-            test.Add(new Card(suit, 4));
-            test.Add(new Card(new Suit(SuitNames.HEART), 2));
-            test.Add(new Card(new Suit(SuitNames.CLUB), 2));
+            test.Add(new Card(suit, CardValues.TEN));
+            test.Add(new Card(suit, CardValues.JACK));
+            test.Add(new Card(suit, CardValues.QUEEN));
+            test.Add(new Card(suit, CardValues.ACE));
+            test.Add(new Card(suit, CardValues.KING));
 
-            Assert.IsTrue(test.IsThreeOfAKind);
+            Assert.IsTrue(test.IsRoyalFlush);
         }
 
         [TestMethod]
@@ -230,6 +230,36 @@ namespace HandChooser.Tests
         }
 
         [TestMethod]
+        public void TexasHoldemHand_IsStraightHigh()
+        {
+            var test = ConstructTestObject();
+            var suit = new Suit("Spade");
+
+            test.Add(new Card(suit, CardValues.TEN));
+            test.Add(new Card(suit, CardValues.JACK));
+            test.Add(new Card(suit, CardValues.QUEEN));
+            test.Add(new Card(suit, CardValues.ACE));
+            test.Add(new Card(suit, CardValues.KING));
+
+            Assert.IsTrue(test.IsStraight);
+        }
+
+        [TestMethod]
+        public void TexasHoldemHand_IsStraightLow()
+        {
+            var test = ConstructTestObject();
+            var suit = new Suit("Spade");
+
+            test.Add(new Card(suit, 5));
+            test.Add(new Card(suit, 2));
+            test.Add(new Card(suit, 4));
+            test.Add(new Card(suit, 3));
+            test.Add(new Card(suit, CardValues.ACE));
+
+            Assert.IsTrue(test.IsStraight);
+        }
+
+        [TestMethod]
         public void TexasHoldemHand_IsStraightFlush()
         {
             var test = ConstructTestObject();
@@ -242,6 +272,21 @@ namespace HandChooser.Tests
             test.Add(new Card(suit, 6));
 
             Assert.IsTrue(test.IsStraightFlush);
+        }
+
+        [TestMethod]
+        public void TexasHoldemHand_IsThreeOfAKind()
+        {
+            var test = ConstructTestObject();
+            var suit = new Suit(SuitNames.SPADE);
+
+            test.Add(new Card(suit, 5));
+            test.Add(new Card(suit, 2));
+            test.Add(new Card(suit, 4));
+            test.Add(new Card(new Suit(SuitNames.HEART), 2));
+            test.Add(new Card(new Suit(SuitNames.CLUB), 2));
+
+            Assert.IsTrue(test.IsThreeOfAKind);
         }
 
         [TestMethod]

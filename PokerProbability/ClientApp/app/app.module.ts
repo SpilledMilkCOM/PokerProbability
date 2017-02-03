@@ -22,6 +22,9 @@ import { CardComponent } from './components/card/card.component';
     imports: [
         UniversalModule,    // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
         FormsModule,        // For two-way binding [(ngModel)]
+
+        // How do you wrap security in the modules/components if the client can get around in the debugger?
+
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },

@@ -20,7 +20,7 @@ namespace SM.Cards
         /// <summary>
         /// Mostly for crappy hands comparing each card.
         /// </summary>
-        public IEnumerable<int> HighCardValues { get; }
+        public IEnumerable<int> HighCardValues { get { return _cardValues; } }
 
         public HandRankEnum Rank { get; set; }
 
@@ -43,7 +43,7 @@ namespace SM.Cards
                         {
                             if (HighCardValue == rank.HighCardValue)
                             {
-                                result = 0;
+                                result = CompareHighCards(rank.HighCardValues);
                             }
                             else if (HighCardValue < rank.HighCardValue)
                             {
@@ -75,6 +75,42 @@ namespace SM.Cards
             _cardValues = cardValues;
             _cardValues.Sort();
             _cardValues.Reverse();
+        }
+
+        private int CompareHighCards(IEnumerable<int> toCompare)
+        {
+            var result = 1;
+            var iter = toCompare.GetEnumerator();
+
+            foreach(var cardValue in _cardValues)
+            {
+                if (iter.MoveNext())
+                {
+                    if (cardValue == iter.Current)
+                    {
+                        result = 0;
+                    }
+                    else
+                    {
+                        result = (cardValue < iter.Current) ? - 1 : 1;
+                        break;      // Found a difference so break out of the loop.
+                    }
+                }
+                else
+                {
+                    // The list passed in has fewer items so more grouped up and therefore is a better hand.
+                    result = -1;
+                    break;
+                }
+            }
+
+            if (iter.MoveNext())
+            {
+                // The list passed in MORE items so this hand is better.
+                result = 1;
+            }
+
+            return result;
         }
     }
 }

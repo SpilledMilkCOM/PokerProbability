@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace SM.Cards
+namespace SM.Cards.Poker
 {
     public class HandRanking : IHandRanking
     {
@@ -21,7 +21,7 @@ namespace SM.Cards
                 result.Rank = HandRankEnum.StraighFlush;
                 result.RankHighCardValue = hand.HighCard.HighValue;
             }
-            else if(hand.IsFourOfAKind)
+            else if (hand.IsFourOfAKind)
             {
                 result.Rank = HandRankEnum.FourOfAKind;
 
@@ -46,7 +46,7 @@ namespace SM.Cards
             else if (hand.IsThreeOfAKind)
             {
                 result.Rank = HandRankEnum.ThreeOfAKind;
-                // TODO: Group High Value
+                TwoGroupRank(hand, result);
             }
             else if (hand.IsTwoPair)
             {
@@ -62,17 +62,30 @@ namespace SM.Cards
             {
                 result.Rank = HandRankEnum.HighCard;
                 result.RankHighCardValue = hand.HighCard.HighValue;
+
+                HighCardValues(hand, result);
             }
 
             return result;
         }
 
+        //----==== PRIVATE ====--------------------------------------------------------------------
+
+        private void HighCardValues(IHand hand, HandRank rank)
+        {
+            var cardValues = (from card in hand.Cards
+                              orderby card.HighValue
+                              select card.HighValue).Distinct().ToList();
+
+            rank.SetHighCardValues(cardValues);
+        }
+
         private void TwoGroupRank(IHand hand, HandRank rank)
         {
-                var group = (from card in hand.Cards
-                             group card by card.Name into grouped
-                             orderby grouped.Count()
-                             select grouped);
+            var group = (from card in hand.Cards
+                         group card by card.Name into grouped
+                         orderby grouped.Count() descending
+                         select grouped);
 
             // Should only be two groups.
 

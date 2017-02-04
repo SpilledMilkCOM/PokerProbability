@@ -43,9 +43,10 @@
     <Compile Include="Card.cs" />
     <Compile Include="CardValues.cs" />
     <Compile Include="HandRankEnum.cs" />
-    <Compile Include="HandRankRanking.cs" />
+    <Compile Include="HandRanking.cs" />
     <Compile Include="HandRank.cs" />
     <Compile Include="IHandRanking.cs" />
+    <Compile Include="SuitFactory.cs" />
     <Compile Include="SuitNames.cs" />
     <Compile Include="CardNames.cs" />
     <Compile Include="PileShuffler.cs" />

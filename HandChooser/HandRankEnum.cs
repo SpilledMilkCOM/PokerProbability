@@ -2,16 +2,16 @@
 {
     public enum HandRankEnum
     {
-        RoyalFlush = 1,
-        StraighFlush,
-        FourOfAKind,
-        FullHouse,
-        Flush,
-        Straight,
-        ThreeOfAKind,
-        TwoPair,
+        HighCard = 1,
         OnePair,
-        HighCard,
+        TwoPair,
+        ThreeOfAKind,
+        Straight,
+        Flush,
+        FullHouse,
+        FourOfAKind,
+        StraighFlush,
+        RoyalFlush,             // Best hand is HIGHEST value.
         Undefined = -1
     }
 }

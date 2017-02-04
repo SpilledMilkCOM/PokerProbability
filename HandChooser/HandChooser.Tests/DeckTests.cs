@@ -29,7 +29,7 @@ namespace HandChooser.Tests
         }
 
         [TestMethod]
-        public void Deck_Deal_CardSuite()
+        public void Deck_Deal_CardSuit()
         {
             var test = ConstructTestObject();
 

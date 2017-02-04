@@ -1,10 +1,16 @@
-﻿namespace SM.Cards
+﻿using System.Linq;
+
+namespace SM.Cards
 {
     public class HandRanking : IHandRanking
     {
         public HandRank Rank(IHand hand)
         {
             var result = new HandRank();
+
+            // TODO: Could set up visitors on the hand to determine rank (versus all this IF stuff)
+
+            result.HighCardValue = hand.HighCard.HighValue;
 
             if (hand.IsRoyalFlush)
             {
@@ -18,12 +24,14 @@
             else if(hand.IsFourOfAKind)
             {
                 result.Rank = HandRankEnum.FourOfAKind;
-                // TODO: Group High Value
+
+                TwoGroupRank(hand, result);
             }
             else if (hand.IsFullHouse)
             {
                 result.Rank = HandRankEnum.FullHouse;
-                // TODO: Group High Value
+
+                TwoGroupRank(hand, result);
             }
             else if (hand.IsFlush)
             {
@@ -56,9 +64,20 @@
                 result.RankHighCardValue = hand.HighCard.HighValue;
             }
 
-            result.HighCardValue = hand.HighCard.HighValue;
-
             return result;
+        }
+
+        private void TwoGroupRank(IHand hand, HandRank rank)
+        {
+                var group = (from card in hand.Cards
+                             group card by card.Name into grouped
+                             orderby grouped.Count()
+                             select grouped);
+
+            // Should only be two groups.
+
+            rank.RankHighCardValue = group.First().First().HighValue;
+            rank.RankSecondHighCardValue = group.Last().First().HighValue;
         }
     }
 }

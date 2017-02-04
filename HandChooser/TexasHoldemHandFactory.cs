@@ -15,5 +15,22 @@
 
             return result;
         }
+
+        public IHand ConstructFullHouse(int value, int overValue)
+        {
+            var spade = new Suit(SuitNames.SPADE);
+            var club = new Suit(SuitNames.CLUB);
+            var heart = new Suit(SuitNames.HEART);
+
+            IHand result = new TexasHoldemHand();
+
+            result.Add(new Card(spade, value));
+            result.Add(new Card(club, value));
+            result.Add(new Card(heart, value));
+            result.Add(new Card(spade, overValue));
+            result.Add(new Card(club, overValue));
+
+            return result;
+        }
     }
 }

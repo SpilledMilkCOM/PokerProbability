@@ -12,5 +12,7 @@
         public int HighCardValue { get; set; }
 
         public int RankHighCardValue { get; set; }
+
+        public int RankSecondHighCardValue { get; set; }
     }
 }

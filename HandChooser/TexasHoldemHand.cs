@@ -26,6 +26,9 @@ namespace SM.Cards.Poker
             }
         }
 
+        /// <summary>
+        /// The highest value in the hand (includes any grouped cards)
+        /// </summary>
         public Card HighCard
         {
             get

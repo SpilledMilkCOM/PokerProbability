@@ -2,7 +2,6 @@
 using SM.Cards;
 using SM.Cards.Poker;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 
 namespace HandChooser.Tests
 {

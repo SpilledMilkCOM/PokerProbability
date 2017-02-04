@@ -1,6 +1,6 @@
 ﻿namespace SM.Cards
 {
-    public class Suit
+    public class Suit : ISuit
     {
         public Suit(string name)
         {

@@ -12,7 +12,7 @@ namespace SM.Cards
 
         Card Deal(Card card);
 
-        Card Deal(Suit suit);
+        Card Deal(ISuit suit);
 
         void Reset();
 

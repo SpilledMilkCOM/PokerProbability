@@ -10,7 +10,7 @@
 
         string Name { get; set; }
 
-        Suit Suit { get; set; }
+        ISuit Suit { get; set; }
 
         int Value { get; set; }
     }

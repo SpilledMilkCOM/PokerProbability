@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 namespace SM.Cards.Poker
 {
@@ -19,7 +18,7 @@ namespace SM.Cards.Poker
             return result;
         }
 
-        public IHand ConstructFlush(Suit suit)
+        public IHand ConstructFlush(ISuit suit)
         {
             IHand result = ConstructCrappyHand();
 
@@ -57,7 +56,7 @@ namespace SM.Cards.Poker
             return result;
         }
 
-        public IHand ConstructRoyalFlush(Suit suit)
+        public IHand ConstructRoyalFlush(ISuit suit)
         {
             IHand result = new TexasHoldemHand();
 
@@ -88,7 +87,7 @@ namespace SM.Cards.Poker
             return result;
         }
 
-        public IHand ConstructStraightFlush(Suit suit, int highValue)
+        public IHand ConstructStraightFlush(ISuit suit, int highValue)
         {
             IHand result = new TexasHoldemHand();
 
@@ -119,12 +118,12 @@ namespace SM.Cards.Poker
             return result;
         }
 
-        private Suit Club { get { return SuitFactory.Club; } }
+        private ISuit Club { get { return SuitFactory.Club; } }
 
-        private Suit Diamond { get { return SuitFactory.Diamond; } }
+        private ISuit Diamond { get { return SuitFactory.Diamond; } }
 
-        private Suit Heart { get { return SuitFactory.Heart; } }
+        private ISuit Heart { get { return SuitFactory.Heart; } }
 
-        private Suit Spade { get { return SuitFactory.Spade; } }
+        private ISuit Spade { get { return SuitFactory.Spade; } }
     }
 }

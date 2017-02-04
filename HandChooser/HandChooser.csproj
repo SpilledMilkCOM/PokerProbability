@@ -46,6 +46,7 @@
     <Compile Include="HandRanking.cs" />
     <Compile Include="HandRank.cs" />
     <Compile Include="IHandRanking.cs" />
+    <Compile Include="ISuit.cs" />
     <Compile Include="SuitFactory.cs" />
     <Compile Include="SuitNames.cs" />
     <Compile Include="CardNames.cs" />

@@ -29,9 +29,10 @@ namespace SM.Cards
             return result;
         }
 
-        public Card Deal(Suit suit)
+        public Card Deal(ISuit suit)
         {
-            var result = _cards.FirstOrDefault(card => card.Suit == suit);
+            // Do NOT use card.Suit == suit (the operator== is a STATIC overload and is NOT found)
+            var result = _cards.FirstOrDefault(card => card.Suit.Equals(suit));
 
             Remove(result);
 

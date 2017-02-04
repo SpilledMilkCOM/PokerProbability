@@ -4,14 +4,14 @@ namespace SM.Cards
 {
     public class Card : ICard
     {
-        public Card(Suit suit, int value)
+        public Card(ISuit suit, int value)
             : this(value.ToString(), suit, value)
         {
             Suit = suit;
             Value = value;
         }
 
-        public Card(string name, Suit suit, int value)
+        public Card(string name, ISuit suit, int value)
         {
             Name = (value == CardValues.ACE || value == CardValues.ACE_HIGH) ? CardNames.ACE : name;
             Abbreviation = Name.Substring(0, 1);
@@ -23,7 +23,7 @@ namespace SM.Cards
 
         public string Name { get; set; }
 
-        public Suit Suit { get; set; }
+        public ISuit Suit { get; set; }
 
         public int Value { get; set; }
 

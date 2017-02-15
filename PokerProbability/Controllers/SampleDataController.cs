@@ -23,6 +23,8 @@ namespace PokerProbability.Controllers
                 TemperatureC = rng.Next(-20, 55),
                 Summary = Summaries[rng.Next(Summaries.Length)]
             });
+
+            // Should have returned a Response()  ObjectData()
         }
 
         public class WeatherForecast

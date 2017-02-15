@@ -10,8 +10,8 @@ import { Observable } from "rxjs/Observable";
 import "rxjs/add/observable/throw";
 
 @Injectable()           // similar to Angular 1's $inject
-export class FetchDataService {
-    public getDataResult: IWeatherForecast[];
+export class CardService {
+    public winPercentResult: number;
 
     constructor(private http: Http) {
         // Http is injected into http variable
@@ -19,20 +19,18 @@ export class FetchDataService {
         this.http = http;
     }
 
-    public getData() {
+    public winPercent() {
         //this.http.get('/api/SampleData/WeatherForecasts').subscribe(apiResult => {
         //    this.getDataResult = apiResult.json();
         //});
 
-        console.log("FetchDataService.getData()");
+        console.log("CardService.winPercent()");
 
-        return this.http.get('/api/SampleData/WeatherForecasts')
+        return this.http.get('/api/Card/WinPercent')
             .map((response: Response) => {
-                console.log("FetchDataService.getData() - mapping response.");
+                console.log("CardService.getData() - mapping response.");
 
-                // The .json().data is not needed since only the data is returned, versus a "Response" object
-
-                return <IWeatherForecast[]>response.json();
+                return <number>response.json().data;
             })
             .toPromise()
             .catch(this.handleError);

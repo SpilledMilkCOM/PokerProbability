@@ -1,22 +1,24 @@
 <h1>Poker Probability</h1>
 
 <h3>Hand</h3>
-<card id="card1"></card>
-<card id="card2"></card>
+<card id="card1" (isDefinedEvent)="handleCard1Event($event)"></card>
+<card id="card2" (isDefinedEvent)="handleCard2Event($event)" [cardVisible]="card2Visible"></card>
+
+Card 2 Visible: {{card2Visible}}
 
 <h3>Flop</h3>
-<card id="card3"></card>
-<card id="card4"></card>
-<card id="card5"></card>
-<card id="card6"></card>
-<card id="card7"></card>
+<card id="card3" (isDefinedEvent)="handleCard3Event($event)" [cardVisible]="card3Visible"></card>
+<card id="card4" (isDefinedEvent)="handleCard4Event($event)" [cardVisible]="card4Visible"></card>
+<card id="card5" (isDefinedEvent)="handleCard5Event($event)" [cardVisible]="card5Visible"></card>
+<card id="card6" (isDefinedEvent)="handleCard6Event($event)" [cardVisible]="card6Visible"></card>
+<card id="card7" [cardVisible]="card7Visible"></card>
 
 <div class="row">
     <div class="col-xs-6">
         <button (click)="calculate()" class="btn">Calculate</button>
     </div>
     <div class="col-xs-6">
-        <input type="text" [(ngModel)]="winPercent"/>
+        <input type="text" [(ngModel)]="winPercent" />
 
         <div>{{winPercent}}</div>
     </div>

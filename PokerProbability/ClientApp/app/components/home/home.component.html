@@ -4,7 +4,9 @@
 <card id="card1" (isDefinedEvent)="handleCard1Event($event)"></card>
 <card id="card2" (isDefinedEvent)="handleCard2Event($event)" [cardVisible]="card2Visible"></card>
 
-Card 2 Visible: {{card2Visible}}
+<!-- Selecting card 2 will fire an event from card 2 and this home component will respond to it
+    setting card 3 to be visible.
+-->
 
 <h3>Flop</h3>
 <card id="card3" (isDefinedEvent)="handleCard3Event($event)" [cardVisible]="card3Visible"></card>

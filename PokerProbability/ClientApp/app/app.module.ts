@@ -1,10 +1,17 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UniversalModule } from 'angular2-universal';                   // BrowserModule, HttpModule, and JsonpModule
+
 import { AppComponent } from './components/app/app.component'
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { CardComponent } from './components/card/card.component';
+
 import { AppRoutingModule, routableComponents } from "./app-routing.module";
+
+// Implementing a fake service so Http can be used in the service.
+
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './components/fetchdata/in-memory-data.service';
 
 @NgModule({
     bootstrap: [ AppComponent ],
@@ -17,6 +24,7 @@ import { AppRoutingModule, routableComponents } from "./app-routing.module";
     imports: [
         UniversalModule,    // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
         FormsModule,        // For two-way binding [(ngModel)]
+        //InMemoryWebApiModule.forRoot(InMemoryDataService),
 
         // How do you wrap security in the modules/components if the client can get around in the debugger?
 

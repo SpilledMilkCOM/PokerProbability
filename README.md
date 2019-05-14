@@ -8,3 +8,13 @@
 
 + Hopefully has good examples of overloading Equals and operator==
 + More examples of CompareTo()
+
+#### Upgrade package versions
+This initial version started in Angular 2.0 and I'd like to update this to the **latest** version of Angular
+and all of its components.
+
++ `npm outdated` - Shows the packages that are out of date
++ `npm install -g npm-check-updates` - Installs `ncu` so you can check what the latest versions are available
++ `ncu` - Shows the current package version of all the packages as well as their **latest** available version
+
+[Some reference](https://www.hostingadvice.com/how-to/update-npm-packages/)
